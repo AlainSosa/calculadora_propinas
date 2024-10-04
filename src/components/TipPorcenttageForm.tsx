@@ -19,25 +19,30 @@ const tipOptions = [
 ];
 type TipPorcenttageForm = {
   setTip: Dispatch<SetStateAction<number>>;
+  tip: number;
   //   cuando no sepas que tipo de valor es dejar que lo infiera vscode
 };
 
-export default function TipPorcenttageForm({ setTip }: TipPorcenttageForm) {
+export default function TipPorcenttageForm({
+  setTip,
+  tip,
+}: TipPorcenttageForm) {
   return (
     <div>
       <h3 className="font-black text-2xl">Propina</h3>
 
       <form action="">
-        {tipOptions.map((tip) => (
-          <div key={tip.id} className="flex gap-2">
-            <label htmlFor="tip.id">{tip.label}</label>
+        {tipOptions.map((tipOptions) => (
+          <div key={tipOptions.id} className="flex gap-2">
+            <label htmlFor="tip.id">{tipOptions.label}</label>
             <input
-              id={tip.id}
+              id={tipOptions.id}
               type="radio"
               name="tip"
-              value={tip.value}
+              value={tipOptions.value}
               onChange={(e) => setTip(+e.target.value)}
               //   al poner el signo mas + cambia el tipo de valor de tipo string a tipo numero
+              checked={tipOptions.value === tip}
             />
           </div>
         ))}
